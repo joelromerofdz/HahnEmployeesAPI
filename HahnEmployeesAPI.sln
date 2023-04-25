@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HahnEmployeesAPI", "HahnEmployeesAPI\HahnEmployeesAPI.csproj", "{1A8B2AFA-C38D-44B2-9156-27F469C3E489}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HahnEmployeesAPI", "HahnEmployeesAPI\HahnEmployeesAPI.csproj", "{1A8B2AFA-C38D-44B2-9156-27F469C3E489}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HahnEmployeesAPI.Domain", "HahnEmployeesAPI.Domain\HahnEmployeesAPI.Domain.csproj", "{46CCD49D-36E4-4A83-AECA-7ED41320E2DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HahnEmployeesAPI.Domain", "HahnEmployeesAPI.Domain\HahnEmployeesAPI.Domain.csproj", "{46CCD49D-36E4-4A83-AECA-7ED41320E2DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HahnEmployeesAPI.Infrastructure", "HahnEmployeesAPI.Infrastructure\HahnEmployeesAPI.Infrastructure.csproj", "{C310DCF1-249E-4763-A87D-81310631300A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{46CCD49D-36E4-4A83-AECA-7ED41320E2DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46CCD49D-36E4-4A83-AECA-7ED41320E2DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46CCD49D-36E4-4A83-AECA-7ED41320E2DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C310DCF1-249E-4763-A87D-81310631300A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C310DCF1-249E-4763-A87D-81310631300A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C310DCF1-249E-4763-A87D-81310631300A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C310DCF1-249E-4763-A87D-81310631300A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
