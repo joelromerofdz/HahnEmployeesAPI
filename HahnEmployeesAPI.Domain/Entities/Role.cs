@@ -11,6 +11,6 @@ namespace HahnEmployeesAPI.Domain.Entities
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public List<Employee> Employees { get; set; }
+        public virtual List<Employee> Employees { get; set; }
     }
 }
