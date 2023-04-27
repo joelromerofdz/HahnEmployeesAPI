@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace HahnEmployeesAPI.Infrastructure.Base
 {
-    public abstract class RepositoryBase<T> : IRepository<T> where T : BaseEntity
+    public class RepositoryBase<T> : IRepository<T> where T : BaseEntity
     {
         private AppDbContext _dbContext;
 
@@ -26,7 +26,7 @@ namespace HahnEmployeesAPI.Infrastructure.Base
             await _dbContext.SaveChangesAsync();
         }
 
-        public  async Task DeleteAsync(T entity)
+        public async Task DeleteAsync(T entity)
         {
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();

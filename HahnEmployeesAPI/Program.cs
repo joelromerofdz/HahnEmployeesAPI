@@ -2,6 +2,8 @@ using HahnEmployeesAPI.Domain.Entities;
 using HahnEmployeesAPI.Domain.Repository;
 using HahnEmployeesAPI.Infrastructure.Base;
 using HahnEmployeesAPI.Infrastructure.Data;
+using HahnEmployeesAPI.Services.Employees;
+using HahnEmployeesAPI.Services.Roles;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,9 +17,11 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 
 //Employee
 builder.Services.AddScoped<IRepository<Employee>, RepositoryBase<Employee>>();
+builder.Services.AddScoped<EmployeeService>();
 
 //Role
 builder.Services.AddScoped<IRepository<Role>, RepositoryBase<Role>>();
+builder.Services.AddScoped<RoleService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

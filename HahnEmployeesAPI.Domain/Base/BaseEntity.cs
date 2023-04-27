@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HahnEmployeesAPI.Domain.Base
 {
-    public abstract class BaseEntity
+    public class BaseEntity
     {
         private DateTime _created;
 
