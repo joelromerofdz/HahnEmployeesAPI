@@ -2,7 +2,7 @@
 
 namespace HahnEmployeesAPI.DTOs.RoleDTOs
 {
-    public class RoleGetDto
+    public class RoleResponseDto
     {
         public string Title { get; set; }
         public string Description { get; set; }
