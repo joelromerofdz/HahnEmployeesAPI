@@ -1,3 +1,6 @@
+using HahnEmployeesAPI.Domain.Entities;
+using HahnEmployeesAPI.DTOs.EmployeeDTOs;
+using HahnEmployeesAPI.Services.Employees;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HahnEmployeesAPI.Controllers
@@ -6,10 +9,17 @@ namespace HahnEmployeesAPI.Controllers
     [Route("[controller]")]
     public class EmployeesController : ControllerBase
     {
-        [HttpGet(Name = "TestingWelcome")]
-        public string Get()
+        private EmployeeService _employeeService;
+
+        public EmployeesController(EmployeeService employeeService)
         {
-            return "Welcome employees";
+            this._employeeService = employeeService;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<EmployeeGetDto>>> Get()
+        {
+            return await _employeeService.GetAllEmployees();
         }
     }
 }

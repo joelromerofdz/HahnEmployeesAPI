@@ -1,10 +1,5 @@
 ﻿using HahnEmployeesAPI.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HahnEmployeesAPI.Infrastructure.Data
 {
@@ -25,8 +20,6 @@ namespace HahnEmployeesAPI.Infrastructure.Data
                 .WithMany(o => o.Employees)
                 .HasForeignKey(e => e.RoleId)
                 .OnDelete(DeleteBehavior.Restrict);
-                
-                
         }
     }
 }
