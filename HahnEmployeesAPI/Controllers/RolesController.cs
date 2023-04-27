@@ -1,8 +1,9 @@
 ﻿using HahnEmployeesAPI.Domain.Entities;
+using HahnEmployeesAPI.DTOs.EmployeeDTOs;
 using HahnEmployeesAPI.DTOs.RoleDTOs;
+using HahnEmployeesAPI.Services.Employees;
 using HahnEmployeesAPI.Services.Roles;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace HahnEmployeesAPI.Controllers
 {
@@ -11,19 +12,19 @@ namespace HahnEmployeesAPI.Controllers
     public class RolesController : ControllerBase
     {
         private RoleService _roleService;
-        public RolesController(RoleService roleService) 
+        public RolesController(RoleService roleService)
         {
             this._roleService = roleService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<RoleGetDto>>> Get()
+        public async Task<ActionResult<List<RoleResponseDto>>> Get()
         {
             return await _roleService.GetAllRoles();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<RoleGetDto?>> Get([FromRoute] int? id)
+        public async Task<ActionResult<RoleResponseDto?>> Get([FromRoute] int id)
         {
             var role = await _roleService.GetRoleById(id);
 
@@ -36,62 +37,58 @@ namespace HahnEmployeesAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Role role)
+        public async Task<ActionResult> Post([FromBody] RoleRequestDto roleRequestDto)
         {
-            await _roleService.Add(role);
-            return Ok();
+            try
+            {
+                await _roleService.AddRole(roleRequestDto);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int? id, [FromBody] Role role)
+        public async Task<ActionResult> Update([FromRoute] int id, [FromBody] RoleRequestDto roleRequestDto)
         {
-            if (id == null)
+            try
             {
-                return BadRequest("This role id does not exist.");
+                var updatedRole = await _roleService.UpdateRole(id, roleRequestDto);
+
+                if (!updatedRole)
+                {
+                    return NotFound();
+                }
+
+                return Ok();
             }
-
-            var existRole = await _roleService.GetRoleExist(id);
-
-            if (!existRole)
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
-
-            var getRole = await _roleService
-                .GetByExpression(r => r.Id == id);
-
-            Role roleValue = (Role)getRole;
-            roleValue.Description = role.Description;
-            roleValue.Title = role.Title;
-            roleValue.Updated = DateTime.Now;
-
-            await _roleService.Update(roleValue);
-            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete([FromRoute] int? id)
+        public async Task<ActionResult> Delete([FromRoute] int id)
         {
-            if (id == null)
+            try
             {
-                return BadRequest("This role id does not exist.");
+                var deletedRole = await _roleService.DeleteRole(id);
+
+                if (!deletedRole)
+                {
+                    return NotFound();
+                }
+
+                return Ok();
             }
-
-            var existRole = await _roleService.GetRoleExist(id);
-
-            if (!existRole)
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
-
-            var getRole = await _roleService
-                .GetByExpression(r => r.Id == id);
-
-            Role roleValue = (Role)getRole;
-
-            _roleService.Delete(roleValue);
-
-            return Ok();
         }
     }
 }
